@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FUNCTION</title>
+</head>
+<body>
+<script>
+    // function checkAge(age) {return age > 18?  true: confirm('Родители разрешили?');}
+    // function checkAge(age) {return (age > 18) || confirm('Родители разрешили?');}
+   // let min=(a, b) => {
+   //     return (a < b)? a: b}
+   //  console.log(min(2, 5))
+   //  let x =prompt('number 1?');
+   //  let n =prompt('number 2?');
+   //  let pow =(x, n) => {
+   //      let result = x
+   //      for (let i=0; i<n; i++) {result *=x}
+   //             return (
+   //                 result)};
+   // alert(pow(x, n))
+    let ask =(question, yes, no)=> {
+        if (confirm(question)) yes()
+        else no();
+    }
+
+    ask(
+        "Вы согласны?",
+        ()=> { alert("Вы согласились."); },
+        ()=> { alert("Вы отменили выполнение."); }
+    );  
+
+</script>
+</body>
+</html>
+
+

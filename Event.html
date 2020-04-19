@@ -1,0 +1,17 @@
+
+    <script>
+        
+        const big = document.getElementById('big');
+        const medium = document.getElementById('medium');
+        const small = document.getElementById('small');
+        
+        const onClickHandler = (e) =>{
+            small.classList.add('newClass');
+            
+            console.dir(small);
+            e.currentTarget.parentElement.style.backgroundColor = 'black';
+        }
+        // big.onclick = onClickHandler;
+        // medium.onclick = onClickHandler;
+        // small.onclick = onClickHandler;
+        small.addEventListener('click', onClickHandler);

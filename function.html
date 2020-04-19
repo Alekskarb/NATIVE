@@ -1,0 +1,99 @@
+<script>
+// 1. Синтаксические приколы
+    const student = {
+        name: "Alex",
+        age: 18
+    }
+    // let name = student.name;
+    // let age = student['age'];
+    let {name, age} = student;
+
+    let myArr = ['hi', 'yo', 'wait'];
+    let[a, b, c] = myArr
+        // let[a, b, c] = ['hi', 'yo', 'wait'];
+    function person (name, age) {
+        let greeting = `Hi, my ${name}.`;
+        let aboutMe = `I'm ${age} years old`;
+            return [greeting, aboutMe];
+    };
+
+    // let alex = person('Alex', 23);
+    // const greeting = Alex[0];
+    // const aboutMe = Alex[1];
+
+    const [greeting, aboutMe] = person('Alex', 23);
+
+    let firstNum = 11;
+    let secondNum = 22;
+
+        // let temp = firstNum;
+    // firstNum = secondNum;
+    // secondNum = temp;
+    [secondNum, firstNum] = [firstNum, secondNum];
+
+    //Ассоциативный массив:
+
+let admin = { '0': {},
+'1': {} };
+
+// 2. Параметры
+
+// function myName (a, b, c){
+//     console.log(arguments[0]);
+// };
+//ПСЕВДОМАССИВ или КОЛЛЕКЦИЯ
+
+    let d = 10
+    function myName (a=d, b=20, c=30) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(arguments);
+    }
+myName(1,2);
+
+    const myRestFn =(a,b,...c)=>{
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+
+    myRestFn(1,2,3,4,5);
+
+// let myNum = (1, 2, 3, 4, 5);
+// console.log(Math.max(...myNum));
+
+function personToo ({name, age}){
+    const greeting = `Hi, my ${name}.`;
+let aboutMe = `I'm ${age} years old`;
+return `${greeting}, ${aboutMe}`;
+}
+console.log(personToo(student));
+
+
+// const greeting = 'hey';
+function greetings() {
+    let x = 7;
+    console.log(greetings);
+}
+
+    function makeCounter() {
+        let count =0; //внешняя переменная
+        let fn = function () {
+            return count++;
+        }
+        return fn;
+    }
+
+    // count = 3;
+
+let counter = makeCounter();
+console.log(counter());
+console.log(counter());
+console.log(counter());
+let counterOne = makeCounter();
+
+console.log(makeCounter()());
+
+
+</script>

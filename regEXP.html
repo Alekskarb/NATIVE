@@ -1,0 +1,19 @@
+<script>
+
+    let phoneRegex = /37529\d{7}/;
+    console.log(phoneRegex.test('375291111111'));
+
+    // let mailRegex = /[a-zA-Z]@gmail\.com/;
+    let mailRegex = /^\w+@gmail\.com$/;
+    console.log(mailRegex.test('korbutowski@gmail.com'));
+
+
+
+    // let domainRegex = /^\\//{2,}\.by$/;
+    console.log(domainRegex.test('https//tut.by'));
+    console.log(domainRegex.test('http//tut.by'));
+
+    let domainWithProtocolRegex = /^(https{0,1}:\/\/)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+    console.log(domainRegex.test('https//it_tut.by'));
+
+</script>

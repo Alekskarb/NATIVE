@@ -1,0 +1,48 @@
+
+    <div class="site">
+        <div class="block">
+            <span>key</span>
+            <span>key1</span>
+            <span>key2</span>
+            <span>key3</span>
+        <div class="title">Numbers</div>
+    <div class="content">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    </div>
+    <div class="block">
+        <div class="title">Letters</div>
+        <div class="content">
+
+            <span>key11</span>
+            <span>key12</span>
+            <span>key13</span>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <span>key</span>
+                <li>c</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const findKeys = (node, keys) => {
+            let elems = document.documentElement.childNodes;
+            [].forEach.call(elems, function(elem) {
+                alert( elem ); // HEAD, текс        т, BODY
+            });
+        }
+
+        let rootNode = document.getElementById("root");
+
+        let keys = [];
+
+        findKeys(rootNode, keys);
+
+    </script>

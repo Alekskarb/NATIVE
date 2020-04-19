@@ -1,0 +1,229 @@
+<script>
+    // 1.Создание объекта с помощью литерала.
+    // Имена свойств (ключи) - валидные идентификаторы.
+    // Значения свойств - любые типы данных.
+    const student = {
+        name: 'Alex',
+        'age': 18,
+        isStudent: true,
+        friends: ['Nick', 'John'],
+        greeting: function () { // <-метод объекта!!!
+            console.log("Hi! I'm a function!");
+        }
+    };
+    console.log(student);
+
+
+    // 2.Чтение свойств объекта. 
+    // Два вида синтаксиса.
+    const dotNotation = student.name;
+    const bracketsNotation = student['name'];
+
+    console.log(dotNotation);
+    console.log(bracketsNotation);
+    console.log(student.greeting()); //<- вызов метода объекта 
+
+    // 3. Cоздание свойства через присвоение значения
+    student.gender = 'male';
+    console.log(student);
+    // - с использованием переменной в качестве ключа
+    const newProp = 'isMarried';
+    student[newProp] = false;
+    console.log(student);
+
+    // 4.Передача значения по ссылке
+    const firstName = { a: 2, b: 'yo!!!!' };
+    const secondName = firstName;
+    secondName.a = 'hey!!!';
+    console.log(firstName.a);
+    // Объект изменился. Так как 'firstName' и 'secondName' - это 
+    // не два разных объекта, а две разные ссылки на один и тот же объект
+    // (два имени одого объекта).
+
+    // 5.Копирование объекта с помощью spread-оператора
+    let copyFirstName = { ...firstName };
+    copyFirstName.a = 'it-kamasutra.com';
+    console.log(firstName.a);
+    // Объект с ссылкой 'firstName' не изменился, т.к. 'copyFirstName' - это
+    // другой объект. Но так мы получаем лишь ПОВЕРХНОСТНУЮ копию:
+    const copyStudent = { ...student };
+    student.friends.push('Anne');
+    console.log(copyStudent.friends)
+    // 'Anne' появилось в обоих объектах, т.к. и 'student.friends', и 
+    // 'copyStudent.friends' ссылаются на один и тот же массив.
+
+    // 6.Более глубокое копирование с созданием копии массива 'friends' 
+    const newCopyStudent = { ...student, friends: [...student.friends] };
+    newCopyStudent.friends.push('Den');
+    console.log(newCopyStudent.friends);
+    console.log(student.friends);
+
+    // 7.Объединение объектов с помощью spread-оператора
+    const newObj = { ...student, ...firstName };
+    console.log(newObj);
+
+    // 8.Деструктуризация
+
+    // Вот так можно, но много кода:
+    // const myName = student.name;
+    // const myAge = student.age;
+    // const isStudent = student.isStudent;
+    // const friends = student.friends;
+
+    // А вот так короче намного:
+
+    let { name: myName, age: myAge, isStudent, friends } = student;
+    console.log(myName, myAge, isStudent, friends);
+
+    // 9.Методы объекта:
+    const human = {
+        name: 'Alex',
+        'age': 18,
+        isStudent: true,
+        greeting: function () {
+            return `My name is ${human.name}`
+        },
+        fullGreeting: function () {
+            return `Hi! My name is ${human.name}. I'm ${human.age} years old.`
+        }
+
+    };
+    // 10.Функция-фабрика:
+    // Если нужно много однородных объектов - создаём функцию. И тут уже нужен 'this',
+    // так как имена пременных, в которых будут сохраняться ссылки на создаваемые объекты -
+    // неизвестны и эти имена будут разными, а метод должен уметь работать со свойствами своего объекта
+    // вне зависимости от "внешнего" имени объекта.
+    function humanCreator(n, a) {
+        return {
+            name: n,
+            age: a,
+            greeting: function () {
+                return `My name is ${this.name}`
+            },
+            fullGreeting: function () {
+                return `Hi! My name is ${this.name}. I'm ${this.age} years old.`
+            }
+        }
+    }
+
+    const john = humanCreator('John', 23);
+
+    console.log(john);
+    console.log(john.greeting());
+
+
+    // 11.Функция-конструктор.
+    // Создание:
+    function Human (n, a) {
+        this.name = n,
+            this.age = a,
+        this.greeting = function(){
+            return `My name is ${this.name}`};
+        this.fullGreeting = function () {
+        return `Hi! My name is ${this.name}. I'm ${this.age} years old.`
+        }
+    }
+
+    // Выносим методы в свойство 'ptototype' функции-конструктора:
+    Human.prototype.greeting = function () {
+        return `My name is ${this.name}`
+    };
+    Human.prototype.fullGreeting = function () {
+        return `Hi! My name is ${this.name}. I'm ${this.age} years old.`
+    };
+    // Создаём новый объект путём вызова конструктора с ключевым словом 'new'
+    const ivan = new Human('Ivan', 33);
+    // Проверяем, что всё работает:
+    console.log(ivan);
+    console.log(ivan.greeting());
+
+    // 13.Использование в нативном JS
+    const myArr = new Array();
+    // то же самое, что и: const myArr = [];
+    const nyObj = new Object();// new Object();
+    // то же самое, что и: const myObj = {};
+
+    // 14.Работа со свойствами объекта.
+    // Как определить СОБСТВЕННЫЕ свойства объекта или из прототипа:
+    console.log(ivan.hasOwnProperty('name'));
+    console.log(ivan.hasOwnProperty('greeting'));
+    // Как перебрпть все ДОСТУПНЫЕ свойства объекта:
+    for (let prop in ivan) {
+        // console.log(ivan[prop]);
+        console.log(prop);
+    }
+    // Как получить массив СОБСТВЕННЫХ свойств объекта:
+    const props = Object.keys(ivan);
+    console.log(props);
+
+    //15. Классы.
+    // Определение класса:
+    class HumanPlus {
+        constructor(name, age) {
+            this.name = name;
+                this.age = age
+        }
+        // При определении метода класса можем использовать стрелочную функцию. Она не теряет this.
+        // Однако она не записывается в 'prototype' конструктора (см. строку 171)
+        // и не будет доступна в дочернем классе через 'super.greeting()'.
+        // Только через 'this.greeting()'.
+        // Вобщем, со стрелочными функциями как методами класса есть особенности.
+        greeting = () => {
+            return `My name is ${this.name}`
+        }
+    };
+    // Создание экземпляра (сущности) класса:
+    const olga = new HumanPlus('Olga', 19);
+    console.log(HumanPlus.prototype.greeting);
+    console.log(olga);
+
+    // 16.Наследование.
+    // Cоздание нового класса на основе существующего:
+    class Person extends HumanPlus {
+        constructor(name, age, gender) {
+            // вызов конструктора класса HumanPlus (super):
+            super(name, age);
+            this.gender = gender;
+        }
+        sayBue = () => {
+            // использование метода родительского класса:
+            console.log(this.greeting());
+            return `Bye-bye! I'm ${this.gender}.`
+        }
+    }
+
+    const nick = new Person ('Nick', 33, 'male');
+    console.log(nick.sayBue());
+
+    // 17.Пример для закрепления.
+    class Animal {
+        constructor(name) {
+            this.name = name;
+        }
+        speak() {
+            console.log(`${this.name} makes a noise.`);
+        }
+    }
+
+    class Dog extends Animal {
+        constructor(name, color) {
+            super(name);
+            this.color = color
+        }
+        speak() { //переопределение метода (одноимённый метод есть у родителя)
+            super.speak(); // делаем то же, что и в родителе
+            // и добавляем свой функционал 
+            console.log(`${this.name} say: "wow!!!"`);
+        }
+        // Как это сработает, если speak в родительском классе был стрелочной функцией?
+    }
+
+    let dog = new Dog('Rex', 'red');
+    dog.speak();
+
+
+
+
+
+
+</script>

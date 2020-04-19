@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    function setNewProp(propName, propValue) {
+        this[propName] = propValue
+    };
+
+    window.setNewProp('isHavePet', true);
+    console.dir(window);
+
+    const student = {
+        'name': 'alex',
+        age: 38,
+        isStudent: true,
+        friends: ['zenik', 'vladik'],
+        greeting: function () {
+            return `my name is ${student.name}`
+        },
+        setNewProp: setNewProp,
+    };
+
+    student.greeting();
+    student['greeting']();
+    student.setNewProp('isHavePet', true);
+    console.log(student['name']);
+    console.log(student.name);
+    console.dir(student);
+
+    const one = {a: 1, b: 2};
+    const two = one;
+
+    const man = {
+        'name': 'sanek',
+        age: 38,
+        isStudent: true,
+        greeting: function () {
+            return `my name is ${man.name}.`
+        }
+    };
+
+    function manCreator(name, age, isStudent) {
+        return {
+            name: name,
+            age: age,
+            isStudent: isStudent,
+            greeting: function () {
+                return `my name is ${this.name}.`
+            }
+        }
+    }
+
+    const alex = manCreator("alex", 22, true);
+
+    function Human (name, age, isStudent) {
+        this.name = name;
+            this.age = age;
+            this.isStudent = isStudent;
+            // this.greeting = function () {
+            //     return `my name is ${this.name}. `
+            // }
+    }
+
+        const vano = new Human("lex", 33, false);
+
+    Human.prototype.greeting = function () {
+        return `my name is ${this.name}.`
+    }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
