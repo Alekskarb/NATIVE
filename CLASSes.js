@@ -24,3 +24,21 @@ const box1 = new Box({
     size: 100,
     color: 'red'
 });
+const box2 = new Box({
+    selector: '#box2',
+    size: 120,
+    color: 'green'
+});
+
+class Circle extends Box {
+    constructor(options) {
+        super(options);
+        this.$el.style.borderRadius = '50%';
+    }
+}
+
+const circle = new Circle({
+    selector: '#circle',
+    size: 120,
+    color: 'blue'
+});
