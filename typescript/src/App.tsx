@@ -9,15 +9,15 @@ let isStudent: boolean = true;
 let family: Array<string> = ['sanya', 'tanya', 'pasha', 'illya'];
 
 type UserType = {
-    greeting: (message: string)=> void
+    greeting: (message: string) => void
     name: string
     age?: number
     isStudent: boolean
     address: AddressType | null
 };
 type AddressType = {
-    city: string
-    country: string
+    city: string | null
+    country: string | null
 };
 let user: UserType = {
     greeting(message) {
@@ -32,23 +32,31 @@ let user: UserType = {
     }
 };
 
- let initialStateType = {
-  name: null as string | null,
-  age: null as number | null,
-  isStudent: null as boolean | null,
-  address: AddressType | null,
+let initialState = {
+    name: null as string | null,
+    age: null as number | null,
+    isStudent: null as boolean | null,
+    address: {
+        city: null,
+        country: null
+    } as AddressType,
+    addresses: [] as Array<AddressType>
 };
 
-export type InitialStateType = typeof initialStateType
+export type InitialStateType = typeof initialState;
 
-let initialState: InitialStateType = {
-  name: 'alex',
-  age: 38,
-  isStudent: true,
-  address: {
-    city: 'Minsk',
-    country: "BY"
-  }
+let state: InitialStateType = {
+    name: 'alex',
+    age: 38,
+    isStudent: true,
+    address: {
+        city: 'Minsk',
+        country: "BY"
+    },
+    addresses: [{
+        city: 'Minsk',
+        country: "BY"
+    }]
 };
 
 
