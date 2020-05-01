@@ -8,11 +8,47 @@ let isStudent: boolean = true;
 
 let family: Array<string> = ['sanya', 'tanya', 'pasha', 'illya'];
 
-let user = {
-  greeting() {alert('yo')  },
+type UserType = {
+    greeting: (message: string)=> void
+    name: string
+    age?: number
+    isStudent: boolean
+    address: AddressType | null
+};
+type AddressType = {
+    city: string
+    country: string
+};
+let user: UserType = {
+    greeting(message) {
+        alert('yo')
+    },
+    name: 'alex',
+    age: 38,
+    isStudent: true,
+    address: {
+        city: 'Minsk',
+        country: "BY"
+    }
+};
+
+ let initialStateType = {
+  name: null as string | null,
+  age: null as number | null,
+  isStudent: null as boolean | null,
+  address: AddressType | null,
+};
+
+export type InitialStateType = typeof initialStateType
+
+let initialState: InitialStateType = {
   name: 'alex',
   age: 38,
-  isStudent: true
+  isStudent: true,
+  address: {
+    city: 'Minsk',
+    country: "BY"
+  }
 };
 
 
